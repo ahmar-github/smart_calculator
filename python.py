@@ -1,44 +1,42 @@
-def get_number(prompt):
-    while True:
-        try:
-            return float(input(prompt))
-        except ValueError:
-            print("Invalid input. Please enter a valid number.")
+print("=== Welcome to Smart Calculator ===")
 
-def get_operator():
-    operators = ['+', '-', '*', '/']
-    while True:
-        op = input("Enter + for Add, - for Subtract, * for Multiply, / for Divide: ")
-        if op in operators:
-            return op
-        print("Invalid operator. Try again.")
+while True:
+    # Input first number
+    a_input = input("Enter 1st Number: ")
+    if a_input.replace('.', '', 1).isdigit():
+        a = float(a_input)
+    else:
+        print("Invalid input. Please enter a number.")
+        continue
 
-def perform_operation(a, b, operator):
-    if operator == '+':
-        return a + b
-    elif operator == '-':
-        return a - b
-    elif operator == '*':
-        return a * b
-    elif operator == '/':
+    # Input second number
+    b_input = input("Enter 2nd Number: ")
+    if b_input.replace('.', '', 1).isdigit():
+        b = float(b_input)
+    else:
+        print("Invalid input. Please enter a number.")
+        continue
+
+    # Input operator
+    op = input("Enter + for Add, - for Subtract, * for Multiply, / for Divide: ")
+
+    # Perform operation
+    if op == '+':
+        print("Result:", a + b)
+    elif op == '-':
+        print("Result:", a - b)
+    elif op == '*':
+        print("Result:", a * b)
+    elif op == '/':
         if b == 0:
-            return "Error: Division by zero"
-        return a / b
+            print("Error: Cannot divide by zero.")
+        else:
+            print("Result:", a / b)
+    else:
+        print("Invalid operator.")
 
-def main():
-    print("=== Welcome to Smart Calculator ===")
-    while True:
-        a = get_number("Enter 1st Number: ")
-        b = get_number("Enter 2nd Number: ")
-        op = get_operator()
-        
-        result = perform_operation(a, b, op)
-        print("Result:", result)
-
-        again = input("\nDo you want to perform another calculation? (yes/no): ").strip().lower()
-        if again != 'yes':
-            print("Exiting Calculator. Goodbye!")
-            break
-
-if __name__ == "__main__":
-    main()
+    # Ask to continue or exit
+    again = input("\nDo you want to calculate again? (yes/no): ").strip().lower()
+    if again != 'yes':
+        print("Exiting Calculator. Goodbye!")
+        break
